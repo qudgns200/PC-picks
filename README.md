@@ -1,2 +1,2 @@
-# Portfolio
-This Project is for my Portfolio.
+# PC-picks
+Show off your PC!
