@@ -18,8 +18,34 @@
 		</ol>
 		<div class="page-header">
 			<h3><b>Show off PC<b></h3>
-		</div>
-	</div>
+    </div>
+    
+    <button type="button" onclick="loadDoc()">Request data</button>
+
+<p id="print"></p>
+  </div>
+  
+
+
+  <script>
+    function loadDoc() {
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+          //document.getElementById("print").innerHTML = this.responseText;
+          console.log(this.responseText);
+        var response = JSON.parse(this.responseText);
+        document.getElementById("print").innerHTML = response.name;
+        }
+      };
+      xhttp.open("GET", "http://localhost:8080/Hello", false);
+      // xhttp.setRequestHeader("X-Custom-Header", "testvalue");
+      xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
+      xhttp.send();
+    }
+      </script>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
   </body>
