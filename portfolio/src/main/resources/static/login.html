@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PC Picks</title>
+<!-- 부트스트랩 -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
+			<div class="page-header">
+				<h1>Login</h1>
+			</div>
+			
+			<form>
+				<div class="form-group">
+					<label for="email">Email-Address</label> 
+						<input type="email" class="form-control" id="email" placeholder="Input Email">
+				</div>
+				<div class="form-group">
+					<label for="password">Password</label> 
+						<input type="password" class="form-control" id="password" placeholder="Password">
+				</div>
+			</form>
+			<div>
+				<button type="button" class="btn btn-primary" onclick="login()">Login</button>
+				<button type="button" class="btn btn-secondary">Close</button>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/login.js"></script>
+</body>
+</html>
