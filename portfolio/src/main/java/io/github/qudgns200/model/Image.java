@@ -1,5 +1,7 @@
 package io.github.qudgns200.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,5 +12,6 @@ public class Image {
 	private String email;
 	private String title;
 	private String desc;
-	private String image; 
+	private String image;
+	private MultipartFile uploadImage;
 }

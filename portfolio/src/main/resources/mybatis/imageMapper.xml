@@ -4,11 +4,16 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="io.github.qudgns200.dao.ImageDao">
-	<select id="selectAll" resultType="io.github.qudgns200.model.User">
+	<select id="selectAll" resultType="io.github.qudgns200.model.Image">
 		SELECT * FROM IMAGE
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="io.github.qudgns200.model.Image">
 		SELCT * FROM IMAGE WHERE NO=#{NO}
 	</select>
+	
+	<insert id="insertImage" parameterType="java.util.HashMap">
+			INSERT INTO IMAGE (EMAIL, TITLE, IDESC, IMAGE)
+			VALUES (#{EMAIL}, #{TITLE}, #{DESC}, #{IMAGE})
+	</insert>
 </mapper>
