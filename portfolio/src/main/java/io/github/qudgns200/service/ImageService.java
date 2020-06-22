@@ -2,6 +2,7 @@ package io.github.qudgns200.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.UUID;
 
@@ -29,12 +30,16 @@ public class ImageService {
 	}
 	
 	public String getImageRoot(MultipartFile file) throws IOException {
-		String path = "D:/02_Dev/PC-picks/portfolio/src/main/resources/image";
+		String path = "src/main/resources/static/image/";
 		String fileName = file.getOriginalFilename();
 		UUID uuid = UUID.randomUUID();
 		File target = new File(path, uuid+"_"+fileName);
 		byte[] fileData = file.getBytes();
 		FileCopyUtils.copy(fileData, target);
 		return path+fileName;
+	}
+	
+	public ArrayList<Image> getImageList() {
+		return iDao.selectAll();
 	}
 }

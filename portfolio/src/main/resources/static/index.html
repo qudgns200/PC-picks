@@ -12,6 +12,8 @@
 <!-- 로그인 여부 판단하여 탭 변경 -->
 <script type="text/javascript">
 window.onload = function() {
+	
+	// session 체크하여 login 태그 텍스트 변경
 	if(sessionStorage.getItem("user") != null) {
 		document.getElementById("log").innerHTML = "Logout";
 		document.getElementById("log").value = "Logout";
@@ -19,6 +21,27 @@ window.onload = function() {
 		document.getElementById("log").innerHTML = "Login";
 		document.getElementById("log").value = "Login";
 	}
+
+	// 메인 화면 이미지 출력
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() { // 요청에 대한 콜백
+	    if (xhr.readyState === xhr.DONE) { // 요청이 완료되면
+	        if (xhr.status === 200 || xhr.status === 201) { 
+	        	var jsonXhr = JSON.parse(xhr.responseText);
+	        	for(var i=0; i<jsonXhr.length; i++) {
+	        		var str = document.createElement('div');
+	        		str.className = 'col-sm-6 col-md-4';
+	        		str.innerHTML += "<a href='#' class='thumbnail'>" + "<img src='image/" + jsonXhr[i].image + "'>" + "</a>";
+	        		document.getElementById('bodySection').append(str);
+	        	}
+	        	console.log(document.getElementById('bodySection'));
+	        } else {
+	        	console.error(xhr.responseText);
+	        }
+	    }
+    };
+    xhr.open('GET', 'http://localhost:8080/image');
+    xhr.send(); // 요청 전송
 }
 
 function moveEvent() {
@@ -44,10 +67,12 @@ function moveEvent() {
 				<b>Show off PC</b>
 			</h3>
 		</div>
-
-		<button type="button" onclick="loadDoc()">Request data</button>
-
-		<p id="print"></p>
+		<div id="bodySection" class="row">
+		</div>
+			
+		<footer class="footer">
+			<p>&copy; Company 2014</p>
+		</footer>
 	</div>
 	
 	<!-- Write Modal -->
@@ -70,24 +95,6 @@ function moveEvent() {
 			</div>
 		</div>
 	</div>
-
-	<script>
-    function loadDoc() {
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-          //document.getElementById("print").innerHTML = this.responseText;
-          console.log(this.responseText);
-        var response = JSON.parse(this.responseText);
-        document.getElementById("print").innerHTML = response.name;
-        }
-      };
-      xhttp.open("GET", "http://localhost:8080/Hello", false);
-      // xhttp.setRequestHeader("X-Custom-Header", "testvalue");
-      xhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-      xhttp.send();
-    }
-      </script>
 
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
