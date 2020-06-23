@@ -5,7 +5,7 @@
     
 <mapper namespace="io.github.qudgns200.dao.ImageDao">
 	<select id="selectAll" resultType="io.github.qudgns200.model.Image">
-		SELECT * FROM IMAGE
+		SELECT * FROM IMAGE ORDER BY NO DESC
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="io.github.qudgns200.model.Image">

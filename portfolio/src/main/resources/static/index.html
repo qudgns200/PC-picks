@@ -13,35 +13,11 @@
 <script type="text/javascript">
 window.onload = function() {
 	
-	// session 체크하여 login 태그 텍스트 변경
-	if(sessionStorage.getItem("user") != null) {
-		document.getElementById("log").innerHTML = "Logout";
-		document.getElementById("log").value = "Logout";
-	} else {
-		document.getElementById("log").innerHTML = "Login";
-		document.getElementById("log").value = "Login";
-	}
+	// login a태그 상태 변화용
+	sessionCheck();
 
 	// 메인 화면 이미지 출력
-	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() { // 요청에 대한 콜백
-	    if (xhr.readyState === xhr.DONE) { // 요청이 완료되면
-	        if (xhr.status === 200 || xhr.status === 201) { 
-	        	var jsonXhr = JSON.parse(xhr.responseText);
-	        	for(var i=0; i<jsonXhr.length; i++) {
-	        		var str = document.createElement('div');
-	        		str.className = 'col-sm-6 col-md-4';
-	        		str.innerHTML += "<a href='#' class='thumbnail'>" + "<img src='image/" + jsonXhr[i].image + "'>" + "</a>";
-	        		document.getElementById('bodySection').append(str);
-	        	}
-	        	console.log(document.getElementById('bodySection'));
-	        } else {
-	        	console.error(xhr.responseText);
-	        }
-	    }
-    };
-    xhr.open('GET', 'http://localhost:8080/image');
-    xhr.send(); // 요청 전송
+	callMainImagePage();
 }
 
 function moveEvent() {
@@ -68,6 +44,8 @@ function moveEvent() {
 			</h3>
 		</div>
 		<div id="bodySection" class="row">
+		</div>
+		<div id="pageSection" class="btn-group" role="group" >
 		</div>
 			
 		<footer class="footer">
@@ -100,5 +78,7 @@ function moveEvent() {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/uploadImage.js"></script>
+	<script src="js/sessionCheck.js"></script>
+	<script src="js/callMainImagePage.js"></script>
 </body>
 </html>
