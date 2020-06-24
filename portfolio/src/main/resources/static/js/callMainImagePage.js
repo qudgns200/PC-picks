@@ -9,11 +9,15 @@ function callMainImagePage() {
 	        	var pageCount = jsonXhr.length/9;
 	        	for(var i=0; i<pageCount; i++) {
 		        	var pageButton = document.createElement('button');
+		        	var index = i+1;
 		        	pageButton.className = 'btn btn-default';
 		        	pageButton.type = 'button';
-		        	pageButton.value = i+1;
-		        	pageButton.innerHTML += i+1;
-		        	pageButton.onclick = callSelectImagePage(i+1, jsonXhr);
+		        	pageButton.value = index;
+		        	pageButton.id = 'page' + index;
+		        	pageButton.innerHTML += index;
+		        	pageButton.onclick = function() {
+		        		callSelectImagePage(this.value, jsonXhr);
+		        	}
 	        		document.getElementById('pageSection').append(pageButton);
 	        	}
 	        	callSelectImagePage(1, jsonXhr);
@@ -27,9 +31,10 @@ function callMainImagePage() {
 }
 
 // 선택 페이지 이미지 출력
-function callSelectImagePage(startPage, jsonList) {
-	var end = startPage * 9;
-	var start = end-8;
+function callSelectImagePage(page, jsonList) {
+	document.getElementById('bodySection').innerHTML = "";
+	var end = page * 9;
+	var start = end-9;
 	if(end>jsonList.length) {
 		end = jsonList.length;
 	}
