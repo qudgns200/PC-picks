@@ -42,7 +42,12 @@ function callSelectImagePage(page, jsonList) {
 	for(var i=start; i<end; i++) {
 		var str = document.createElement('div');
 	    str.className = 'col-sm-6 col-md-4';
-	    str.innerHTML += "<a href='#' class='thumbnail'>" + "<img src='image/" + jsonList[i].image + "'>" + "</a>";
+	    str.innerHTML += "<a data-toggle='modal' data-target='#imageModal' class='thumbnail' onclick='callSelectImageModal(" + jsonList[i].title + ", " + jsonList[i].desc + ", " + jsonList[i].image + ")'>" + "<img src='image/" + jsonList[i].image + "'>" + "</a>";
 	    document.getElementById('bodySection').append(str);
 	}
+}
+
+function callSelectImageModal(title, desc) {
+	var modal = document.getElementById('imageModal');
+//	modal.style.display = 'block';
 }
