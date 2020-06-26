@@ -42,12 +42,16 @@ function callSelectImagePage(page, jsonList) {
 	for(var i=start; i<end; i++) {
 		var str = document.createElement('div');
 	    str.className = 'col-sm-6 col-md-4';
-	    str.innerHTML += "<a data-toggle='modal' data-target='#imageModal' class='thumbnail' onclick='callSelectImageModal(" + jsonList[i].title + ", " + jsonList[i].desc + ", " + jsonList[i].image + ")'>" + "<img src='image/" + jsonList[i].image + "'>" + "</a>";
+	    str.innerHTML += "<a data-toggle='modal' data-target='#imageModal' class='thumbnail' onclick='callSelectImageModal(" + JSON.stringify(jsonList[i]) +")'>" + "<img src='image/" + jsonList[i].image + "'>" + "</a>";
 	    document.getElementById('bodySection').append(str);
 	}
 }
 
-function callSelectImageModal(title, desc) {
-	var modal = document.getElementById('imageModal');
-//	modal.style.display = 'block';
+function callSelectImageModal(jsonList) {
+	document.getElementById('imageDiv').innerHTML = "";
+	document.getElementById('inputTitle').value = jsonList.title;
+	document.getElementById('inputContent').value = jsonList.desc;
+	var imageAdd = document.createElement('div')
+	imageAdd.innerHTML = "<img src='image/" + jsonList.image + "'>"; 
+	document.getElementById('imageDiv').append(imageAdd);
 }
