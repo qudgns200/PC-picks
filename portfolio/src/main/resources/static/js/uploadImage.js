@@ -21,6 +21,6 @@ function uploadImage() {
         }
     }
     };
-    xhr.open('POST', 'http://localhost:8080/image');
+    xhr.open('POST', 'https://pc-picks.herokuapp.com/image');
     xhr.send(formData); // 요청 전송
 }

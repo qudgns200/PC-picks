@@ -26,7 +26,7 @@ function callMainImagePage() {
 	        }
 	    }
     };
-    xhr.open('GET', 'http://localhost:8080/image');
+    xhr.open('GET', 'https://pc-picks.herokuapp.com/image');
     xhr.send(); // 요청 전
 }
 

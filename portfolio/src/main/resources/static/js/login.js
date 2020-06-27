@@ -25,6 +25,6 @@ function login() {
         }
     }
     };
-    xhr.open('GET', 'http://localhost:8080/user/'+ email); // 메소드와 주소 설정
+    xhr.open('GET', 'https://pc-picks.herokuapp.com/user/'+ email); // 메소드와 주소 설정
     xhr.send(); // 요청 전송
 }
